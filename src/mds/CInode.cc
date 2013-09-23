@@ -1763,7 +1763,7 @@ void CInode::finish_scatter_gather_update(int type)
 	CDir *dir = p->second;
 	dout(20) << fg << " " << *dir << dendl;
 
-	bool update = dir->is_auth() && !dir->is_frozen();
+	bool update = dir->is_auth() && !dir->is_frozen() && dir->get_version() != 0;
 
 	fnode_t *pf = dir->get_projected_fnode();
 	if (update)
